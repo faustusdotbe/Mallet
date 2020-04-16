@@ -905,9 +905,9 @@ public class ParallelTopicModel implements Serializable {
 				logger.fine("[O " + (System.currentTimeMillis() - iterationStart) + "] ");
 			}
 			
-			if (iteration % 10 == 0) {
+			if (iteration % 1 == 0) { // changed the 10 into a 1 so the LL/token is printed; added just the model LL 
 				if (printLogLikelihood) {
-					logger.info ("<" + iteration + "> LL/token: " + formatter.format(modelLogLikelihood() / totalTokens));
+					logger.info ("<" + iteration + "> LL/token: " + formatter.format(modelLogLikelihood() / totalTokens) + "___" + formatter.format(modelLogLikelihood()) );
 				}
 				else {
 					logger.info ("<" + iteration + ">");
