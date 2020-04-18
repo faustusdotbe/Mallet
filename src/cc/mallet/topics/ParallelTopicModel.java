@@ -790,10 +790,11 @@ public class ParallelTopicModel implements Serializable {
 
 			long iterationStart = System.currentTimeMillis();
 
-			if (showTopicsInterval != 0 && iteration != 0 && iteration % showTopicsInterval == 0) {
+			/*
+			if (showTopicsInterval != 0 && iteration != 0 && iteration % showTopicsInterval == 0) { // Removing this for easier parsing of LLs
 				logger.info("\n" + displayTopWords (wordsPerTopic, false));
 			}
-
+			*/
 			if (saveStateInterval != 0 && iteration % saveStateInterval == 0) {
 				this.printState(new File(stateFilename + '.' + iteration));
 			}
@@ -907,7 +908,7 @@ public class ParallelTopicModel implements Serializable {
 			
 			if (iteration % 1 == 0) { // changed the 10 into a 1 so the LL/token is printed; added just the model LL 
 				if (printLogLikelihood) {
-					logger.info ("<" + iteration + "> LL/token: " + formatter.format(modelLogLikelihood() / totalTokens) + "___" + formatter.format(modelLogLikelihood()) );
+					logger.info ("<" + iteration + "> " + formatter.format(modelLogLikelihood() / totalTokens) + " " + formatter.format(modelLogLikelihood()) );
 				}
 				else {
 					logger.info ("<" + iteration + ">");
